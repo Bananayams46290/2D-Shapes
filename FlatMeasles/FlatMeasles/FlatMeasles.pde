@@ -1,5 +1,5 @@
 //Global Variables
-int smallerDisplayDimesion, mouthOpen;
+int reset, smallerDisplayDimesion, mouthOpen;
 float rectFaceX, rectFaceY, rectFaceWidth, rectFaceHeight;
 float faceX, faceY, faceDiameter;
 float leftEyeX, leftEyeY, rightEyeX, rightEyeY, eyeDiameter; 
@@ -9,9 +9,9 @@ float xNose1, yNose1, xNose2, yNose2, xNose3, yNose3;
 //Display Geomtery
 size(600, 400); //fullScreen(); displayWidth, displayHeight
 //Landscape, not square or portrait
-int appWidth = width, appHeight = height;
+int appWidth = width, appHeight = height; //Swap with displayWidth, displayHeight for testing
 println (width, height, displayWidth, displayHeight); //Verification of values
-println(appWidth, appWidth); //Canvas Flexibility
+println(appWidth, appHeight); //Canvas Flexibility
 //
 //Display Orientation
 //Purpose: a few comparisons of IFs to ID orientation (similar to image() aspect ratio calculations)
@@ -31,22 +31,23 @@ if ( orientation=="Landscape or Square" ) {
 }
 */
 //
-//Variable Population
-smallerDisplayDimesion = height; //ALWAYS in Landscape
-rectFaceX = (width*1/2) - (smallerDisplayDimesion*1/2);
-rectFaceY = height*0;
+//Variable Population: notice using appWidth & appHeight to move between size() & fullScreen()
+smallerDisplayDimesion = appHeight; //ALWAYS in Landscape
+reset = smallerDisplayDimesion / smallerDisplayDimesion; //returns "1"
+rectFaceX = (appWidth*1/2) - (smallerDisplayDimesion*1/2);
+rectFaceY = appHeight*0;
 rectFaceWidth = smallerDisplayDimesion; //Square Shape
 rectFaceHeight = smallerDisplayDimesion; //Square Shape
-faceX = width*1/2;
-faceY = height*1/2;
+faceX = appWidth*1/2;
+faceY = appHeight*1/2;
 faceDiameter = smallerDisplayDimesion;
-leftEyeX = width*1.4/4;
-rightEyeX = width*2.6/4;
-leftEyeY = height*1/4;
+leftEyeX = appWidth*1.4/4;
+rightEyeX = appWidth*2.6/4;
+leftEyeY = appHeight*1/4;
 rightEyeY = leftEyeY; //Best Practice: change one line of code
 eyeDiameter = smallerDisplayDimesion*1/4;
 mouthX1 = leftEyeX;
-mouthY1 = height*3/4;
+mouthY1 = appHeight*3/4;
 mouthX2 = rightEyeX;
 mouthY2 = mouthY1;
 mouthOpen = smallerDisplayDimesion*1/4;
@@ -78,7 +79,18 @@ triangle(xNose1, yNose1, xNose2, yNose2, xNose3, yNose3);
 //rect();
 strokeWeight(mouthOpen); //testing: 100=400/4, mouthOpen=height*1/4
 line(mouthX1, mouthY1, mouthX2, mouthY2);
+strokeWeight(reset); //reset to 1 pixel
 //
 //Measle
+float measleDiameter = random( smallerDisplayDimesion*1/100 , smallerDisplayDimesion*1/25); //Range of measle size: small=*1/100, large=4xbigger (*1/25)
+float measleRadius = measleDiameter*1/2;
+float measleX = random( rectFaceX+measleRadius , (( rectFaceX+rectFaceWidth ) - measleRadius ) );
+float measleY = random( rectFaceY+measleRadius , (( rectFaceY+rectFaceHeight ) - measleRadius ) );
+color red=#FF0000, measleColour=red, whiteReset=#000000; //Note: need range here too
 //rect();
-//ellipse(); //random values given other variables (similar to button code)
+//random values given other variables (similar to button code)
+noStroke(); //Shape outline
+fill(measleColour);
+ellipse( measleX, measleY, measleDiameter, measleDiameter ); 
+stroke(reset); //reset to 1 pixel
+fill(whiteReset); //reset to first colour (i.e. blackReset)
