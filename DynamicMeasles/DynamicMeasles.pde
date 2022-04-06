@@ -1,16 +1,16 @@
-//Global variables
+//Global Variables
 //
-void setup() {}
+void setup() {}//End setup
 //
-void draw() {}
+void draw() {}//End draw
 //
-void keyPressed() {}
+void keyPressed() {}//End keyPressed
 //
-void mousePressed() {}
+void mousePressed() {}//End mousePressed
 //
-//End main program
+//End Main Program
 
-
+/*
 //Global Variables
 int reset, smallerDisplayDimesion, mouthOpen;
 float rectFaceX, rectFaceY, rectFaceWidth, rectFaceHeight;
@@ -42,7 +42,6 @@ if ( orientation=="Landscape or Square" ) {
 } else { 
   println("Turn your phun"); //FUN
 }
-*/
 //
 //Variable Population: notice using appWidth & appHeight to move between size() & fullScreen()
 smallerDisplayDimesion = appHeight; //ALWAYS in Landscape
@@ -77,22 +76,27 @@ rect(rectFaceX, rectFaceY, rectFaceWidth, rectFaceHeight);
 ellipse(faceX, faceY, faceDiameter, faceDiameter);
 //
 //Left Eye
-//rect();
+rect(leftEyeX-eyeDiameter*1/2, leftEyeY-eyeDiameter*1/2, eyeDiameter, eyeDiameter);
 ellipse(leftEyeX, leftEyeY, eyeDiameter, eyeDiameter);
 //
 //Right Eye
-//rect();
+rect(rightEyeX-eyeDiameter*1/2, rightEyeY-eyeDiameter*1/2, eyeDiameter, eyeDiameter);
 ellipse(rightEyeX, rightEyeY, eyeDiameter, eyeDiameter);
 //
 //Nose
-//rect();
+rect(xNose2, yNose1, xNose3-xNose2, yNose3-yNose1);
 triangle(xNose1, yNose1, xNose2, yNose2, xNose3, yNose3);
 //
 //Mouth
-//rect();
+int mouthWidth = int ( mouthX2 - mouthX1 ); //length=end-beginning
+int mouthHeight = mouthOpen;
+rect(mouthX1-mouthHeight*1/2, mouthY1-mouthHeight*1/2, mouthWidth+mouthOpen, mouthHeight);
 strokeWeight(mouthOpen); //testing: 100=400/4, mouthOpen=height*1/4
 line(mouthX1, mouthY1, mouthX2, mouthY2);
 strokeWeight(reset); //reset to 1 pixel
+//comparison rect() line only, no caps, no strokeWeight
+rect(mouthX1, mouthY1, mouthWidth, mouthHeight); 
+//
 //
 //Measle
 float measleDiameter = random( smallerDisplayDimesion*1/100 , smallerDisplayDimesion*1/25); //Range of measle size: small=*1/100, large=4xbigger (*1/25)
@@ -111,3 +115,4 @@ fill(measleColour);
 ellipse( measleX, measleY, measleDiameter, measleDiameter ); 
 stroke(reset); //reset to 1 pixel
 fill(whiteReset); //reset to first colour (i.e. blackReset)
+*/
